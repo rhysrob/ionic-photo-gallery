@@ -41,6 +41,23 @@ export function usePhotoGallery() {
     loadSaved();
   }, [get, readFile]);
 
+  const deletePhoto = async (photo:Photo) => {
+    // Remove this photo from the Photos reference data array
+    const newPhotos = photos.filter(p=>p.filepath !== photo.filepath);
+
+    //update photos array cache by overwriteing the existing photo array
+    set(PHOTO_STORAGE, JSON.stringify(newPhotos));
+
+    // delete photo file from filesystem
+
+    const filename = photo.filepath.substr(photo.filepath.lastIndexOf('/') + 1);
+    await deleteFile({
+      path:filename,
+      directory:FilesystemDirectory.Data
+    });
+    setPhotos(newPhotos);
+  };
+
   const savePicture = async (
     photo: CameraPhoto,
     fileName: string
@@ -92,6 +109,7 @@ export function usePhotoGallery() {
     set(PHOTO_STORAGE, JSON.stringify(newPhotos));
   };
   return {
+    deletePhoto,
     photos,
     takePhoto
   };
