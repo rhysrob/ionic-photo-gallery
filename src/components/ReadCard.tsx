@@ -1,24 +1,26 @@
-import React from 'react'
-import {IonIcon, IonHeader, IonCard, IonCardContent} from '@ionic/react';
+import React from 'react';
+import { IonIcon, IonCard, IonCardContent, IonCardHeader } from '@ionic/react';
 import { bookOutline } from 'ionicons/icons';
-const ReadCard: React.FC = ({children}) => {
+const ReadCard: React.FC = ({ children }) => {
   return (
     <IonCard>
-    <IonHeader style={{
-      background:'#4ac', 
-      padding:20,
-      display:'flex', 
-      alignItems:'center', 
-      justifyContent:'center',
-      color:'white',
-      fontSize:'2em',
-       textAlign:'center'}}>
-    <IonIcon icon={bookOutline}></IonIcon>
-    </IonHeader>
-    <IonCardContent>{children}</IonCardContent>
+      <IonCardHeader
+        style={{
+          background: '#4ac',
+          padding: 20,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          color: 'white',
+          fontSize: '2em',
+          textAlign: 'center'
+        }}
+      >
+        <IonIcon icon={bookOutline}></IonIcon>
+      </IonCardHeader>
+      <IonCardContent>{children}</IonCardContent>
     </IonCard>
-    
-  )
-}
+  );
+};
 
 export default ReadCard;

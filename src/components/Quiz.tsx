@@ -1,19 +1,15 @@
 import React, { useState } from 'react';
 import {
-  IonChip,
-  IonLabel,
-  IonHeader,
   IonIcon,
   IonGrid,
   IonCol,
-  IonRow,
   IonCardSubtitle,
-  IonAlert,
   IonCard,
   IonCardHeader,
   IonCardTitle,
   IonCardContent,
-  IonButton
+  IonButton,
+  IonRow
 } from '@ionic/react';
 import {
   helpOutline,
@@ -38,7 +34,7 @@ const Quiz: React.FC<QuizProps> = ({ question, choices }) => {
   };
   return (
     <IonCard>
-      <IonHeader
+      <IonCardHeader
         style={{
           background: '#c44',
           padding: 20,
@@ -51,7 +47,7 @@ const Quiz: React.FC<QuizProps> = ({ question, choices }) => {
         }}
       >
         <IonIcon icon={helpOutline}></IonIcon>
-      </IonHeader>
+      </IonCardHeader>
       <IonCardHeader>
         <IonCardTitle>{question}</IonCardTitle>
       </IonCardHeader>
@@ -59,14 +55,15 @@ const Quiz: React.FC<QuizProps> = ({ question, choices }) => {
         <IonGrid>
           <IonCol>
             {choices.map((item, index: number) => (
-              <IonButton
-                style={{ width: '100%' }}
-                key={index}
-                size="large"
-                onClick={() => handleAnswer(index)}
-              >
-                {item.str}
-              </IonButton>
+              <IonRow key={index}>
+                <IonButton
+                  style={{ width: '100%' }}
+                  size="large"
+                  onClick={() => handleAnswer(index)}
+                >
+                  {item.str}
+                </IonButton>
+              </IonRow>
             ))}
           </IonCol>
         </IonGrid>
