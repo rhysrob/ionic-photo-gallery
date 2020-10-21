@@ -18,6 +18,12 @@ const Tab1: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
+        <IonHeader collapse="condense">
+          <IonToolbar>
+            <IonTitle size="large">MCQ</IonTitle>
+          </IonToolbar>
+        </IonHeader>
+
         <div
           style={{
             display: 'grid',
@@ -27,10 +33,10 @@ const Tab1: React.FC = () => {
         >
           <ReadCard>
             <p>
-              "I do believe thGorwelion55] vaccines will be available in the
-              first quarter of next year, I do believe that monoclonal
-              antibodies to treat patients and save lives will be available in
-              the coming months," he said.
+              "I do believe the vaccines will be available in the first quarter
+              of next year, I do believe that monoclonal antibodies to treat
+              patients and save lives will be available in the coming months,"
+              he said.
             </p>
             <p>
               "It's with that context that I think we need to reduce

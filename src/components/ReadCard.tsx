@@ -18,7 +18,9 @@ const ReadCard: React.FC = ({ children }) => {
       >
         <IonIcon icon={bookOutline}></IonIcon>
       </IonCardHeader>
-      <IonCardContent>{children}</IonCardContent>
+      <IonCardContent>
+        <div style={{ margin: '20px 0' }}>{children}</div>
+      </IonCardContent>
     </IonCard>
   );
 };

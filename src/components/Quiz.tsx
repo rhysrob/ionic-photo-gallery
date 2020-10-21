@@ -1,15 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   IonIcon,
-  IonGrid,
-  IonCol,
   IonCardSubtitle,
   IonCard,
   IonCardHeader,
   IonCardTitle,
   IonCardContent,
-  IonButton,
-  IonRow
+  IonButton
 } from '@ionic/react';
 import {
   helpOutline,
@@ -28,9 +25,11 @@ interface ChoiceProps {
 const Quiz: React.FC<QuizProps> = ({ question, choices }) => {
   const [isCorrect, setIsCorrect] = useState<boolean>();
   const [showFeedback, setShowFeedback] = useState<boolean>(false);
+  const [selectedAnswer, setSelectedAnswer] = useState<number>();
   const handleAnswer = (i: number) => {
     setIsCorrect(choices[i].correct);
     setShowFeedback(true);
+    setSelectedAnswer(i);
   };
   return (
     <IonCard>
@@ -52,21 +51,18 @@ const Quiz: React.FC<QuizProps> = ({ question, choices }) => {
         <IonCardTitle>{question}</IonCardTitle>
       </IonCardHeader>
       <IonCardContent>
-        <IonGrid>
-          <IonCol>
-            {choices.map((item, index: number) => (
-              <IonRow key={index}>
-                <IonButton
-                  style={{ width: '100%' }}
-                  size="large"
-                  onClick={() => handleAnswer(index)}
-                >
-                  {item.str}
-                </IonButton>
-              </IonRow>
-            ))}
-          </IonCol>
-        </IonGrid>
+        {choices.map((item, index: number) => (
+          <IonButton
+            color={selectedAnswer === index ? 'primary' : 'medium'}
+            key={index}
+            expand="block"
+            fill={selectedAnswer === index ? 'solid' : 'outline'}
+            onClick={() => handleAnswer(index)}
+            size="large"
+          >
+            {item.str}
+          </IonButton>
+        ))}
       </IonCardContent>
       {showFeedback && (
         <IonCardHeader>
@@ -77,15 +73,18 @@ const Quiz: React.FC<QuizProps> = ({ question, choices }) => {
                   style={{
                     background: '#5a5',
                     color: 'white',
-                    display: 'grid',
+                    display: 'flex',
                     alignItems: 'center',
-                    gridTemplateColumns: 'auto auto',
-                    gridColumnGap: '20px',
+                    flexDirection: 'row',
                     width: '100%'
                   }}
                 >
                   <IonIcon
-                    style={{ fontSize: '2em', textAlign: 'center' }}
+                    style={{
+                      fontSize: '2em',
+                      marginRight: '20px',
+                      textAlign: 'center'
+                    }}
                     icon={checkmarkCircleOutline}
                     color="white"
                   />
@@ -101,16 +100,19 @@ const Quiz: React.FC<QuizProps> = ({ question, choices }) => {
                   style={{
                     background: '#a55',
                     color: 'white',
-                    display: 'grid',
+                    display: 'flex',
                     alignItems: 'center',
-                    gridTemplateColumns: 'auto auto',
-                    gridColumnGap: '20px',
+                    flexDirection: 'row',
                     width: '100%'
                   }}
                 >
                   <div>
                     <IonIcon
-                      style={{ fontSize: '2em', textAlign: 'center' }}
+                      style={{
+                        marginRight: '20px',
+                        fontSize: '2em',
+                        textAlign: 'center'
+                      }}
                       icon={closeCircleOutline}
                       color="white"
                     />
