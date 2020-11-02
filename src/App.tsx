@@ -2,12 +2,29 @@ import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import {
   IonApp,
+  IonButton,
+  IonCard,
+  IonCardContent,
+  IonCardHeader,
+  IonCardTitle,
+  IonContent,
+  IonHeader,
   IonIcon,
+  IonItem,
   IonLabel,
+  IonList,
+  IonMenu,
+  IonMenuButton,
+  IonPage,
+  IonPopover,
+  IonProgressBar,
   IonRouterOutlet,
+  IonSplitPane,
   IonTabBar,
   IonTabButton,
-  IonTabs
+  IonTabs,
+  IonTitle,
+  IonToolbar
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { images, ellipse, square, triangle } from 'ionicons/icons';
@@ -33,33 +50,69 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import Sidebar from './pages/Sidebar';
 
 const App: React.FC = () => (
   <IonApp>
-    <IonReactRouter>
-      <IonTabs>
-        <IonRouterOutlet>
-          <Route path="/tab1" component={Tab1} exact={true} />
-          <Route path="/tab2" component={Tab2} exact={true} />
-          <Route path="/tab3" component={Tab3} />
-          <Route path="/" render={() => <Redirect to="/tab1" />} exact={true} />
-        </IonRouterOutlet>
-        <IonTabBar slot="bottom">
-          <IonTabButton tab="tab1" href="/tab1">
-            <IonIcon icon={triangle} />
-            <IonLabel>Tab 1</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="tab2" href="/tab2">
-            <IonIcon icon={images} />
-            <IonLabel>Photos</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="tab3" href="/tab3">
-            <IonIcon icon={square} />
-            <IonLabel>Tab 3</IonLabel>
-          </IonTabButton>
-        </IonTabBar>
-      </IonTabs>
-    </IonReactRouter>
+    <IonContent>
+      <IonHeader>
+        <IonToolbar>
+          <IonMenuButton slot="start" />
+          <IonTitle>HEllo World</IonTitle>
+        </IonToolbar>
+      </IonHeader>
+      <IonSplitPane contentId="main">
+        {/*--  the side menu  --*/}
+        <Sidebar />
+
+        {/*-- the main content --*/}
+        <IonPage id="main" style={{ paddingTop: '70px' }}>
+          <div style={{ paddingTop: '70px' }}>
+            <IonCard>
+              <IonCardHeader>
+                <IonTitle>Title of the page</IonTitle>
+                <IonProgressBar value={0.5} />
+                <IonProgressBar value={0.2} />
+              </IonCardHeader>
+              <IonCardContent>
+                <IonCard>
+                  <IonCardHeader>
+                    <IonCardTitle>Card</IonCardTitle>
+                  </IonCardHeader>
+                  <IonCardContent>
+                    <h2>Header h2</h2>
+                    <p>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Atque nobis illo culpa expedita, dolorum, in tenetur
+                      deserunt natus earum omnis officiis molestias velit
+                      debitis repudiandae quaerat nesciunt! Reprehenderit,
+                      dicta. Impedit!
+                    </p>
+                  </IonCardContent>
+                </IonCard>
+                <br />
+                <IonCard>
+                  <IonCardHeader>
+                    <IonCardTitle>Card</IonCardTitle>
+                  </IonCardHeader>
+                  <IonCardContent>
+                    <h2>Header h2</h2>
+                    <p>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Atque nobis illo culpa expedita, dolorum, in tenetur
+                      deserunt natus earum omnis officiis molestias velit
+                      debitis repudiandae quaerat nesciunt! Reprehenderit,
+                      dicta. Impedit!
+                    </p>
+                  </IonCardContent>
+                </IonCard>
+                <br />
+              </IonCardContent>
+            </IonCard>
+          </div>
+        </IonPage>
+      </IonSplitPane>
+    </IonContent>
   </IonApp>
 );
 
