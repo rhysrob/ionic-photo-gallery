@@ -1,4 +1,14 @@
-import { IonHeader, IonMenu, IonTitle, IonToolbar } from '@ionic/react';
+import {
+  IonContent,
+  IonHeader,
+  IonIcon,
+  IonItem,
+  IonList,
+  IonMenu,
+  IonTitle,
+  IonToolbar
+} from '@ionic/react';
+import { list } from 'ionicons/icons';
 import React from 'react';
 
 const Sidebar = () => {
@@ -9,6 +19,14 @@ const Sidebar = () => {
           <IonTitle>Menu</IonTitle>
         </IonToolbar>
       </IonHeader>
+      <IonContent>
+        <IonList>
+          <IonItem>
+            <IonIcon icon={list} slot="start"></IonIcon>
+            <a href="/dashboard">Dashboard</a>
+          </IonItem>
+        </IonList>
+      </IonContent>
     </IonMenu>
   );
 };
